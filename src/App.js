@@ -37,7 +37,7 @@ function App(props) {
       <h1>TodoMatic</h1>
       <Form addTask={addTask} />
       <div className="filters btn-group stack-exception">
-        <FilterButton name="Touts"/>
+        <FilterButton name="Toutes"/>
         <FilterButton name="Actives"/>
         <FilterButton name="Terminées"/>
       </div>
