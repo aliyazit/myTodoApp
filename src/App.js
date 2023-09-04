@@ -7,7 +7,7 @@ import { nanoid } from "nanoid";
 function App(props) {
   
   const [tasks, setTasks] = useState(props.tasks);
-  const taskList = tasks?.map((task) => <Todo id={task.id} name={task.name} completed={task.completed} key={task.id} toggleTaskCompleted={toggleTaskCompleted} deleteTask={deleteTask} />);
+  const taskList = tasks?.map((task) => <Todo id={task.id} name={task.name} completed={task.completed} key={task.id} toggleTaskCompleted={toggleTaskCompleted} deleteTask={deleteTask} editTask={editTask} />);
   const numberOfTaskToDo = tasks.filter((task) => task.completed !== true).length;
   const tasksWords = numberOfTaskToDo !==1 ? "tâches restantes" : "tâche restante"
   const headingText = `${numberOfTaskToDo} ${tasksWords}`;
@@ -27,6 +27,16 @@ function App(props) {
     setTasks(updatedTasks);
   }
   
+  function editTask(id, newName) {
+    const editedTaskList = tasks.map((task) => {
+      if (id === task.id) {
+        return { ...task, name: newName };
+      }
+      return task;
+    });
+    setTasks(editedTaskList);
+  }
+
   function deleteTask(id) {
     const remainingTasks = tasks.filter((task) => id !== task.id);
     setTasks(remainingTasks);
